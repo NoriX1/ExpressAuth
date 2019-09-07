@@ -41,3 +41,7 @@ exports.signin = function (req, res, next) {
     res.send({ token: tokenForUser(req.user) });
 
 }
+
+exports.signInGoogle = function (req, res, next) {
+    res.redirect("/?token=" + tokenForUser(req.user));
+}

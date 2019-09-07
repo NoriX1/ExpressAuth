@@ -4,12 +4,15 @@ const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = new Schema({
     email: { type: String, unique: true, lowercase: true },
-    password: String
+    password: String,
+    googleID: String
 });
 
 //On save hook for encrypting the password
 userSchema.pre('save', function (next) {
     const user = this;
+
+    if (!user.password) { return next(); } //In case of auth with google password is absent
 
     bcrypt.genSalt(10, function (err, salt) {
         if (err) { return next(err); }
