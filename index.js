@@ -8,8 +8,8 @@ const router = require('./router');
 const mongoose = require('mongoose');
 
 // DB Setup
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true }, (err) => {
-    if(err){
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useCreateIndex: true }, (err) => {
+    if (err) {
         console.warn(err);
         return;
     }
